@@ -7,6 +7,7 @@ import MenuPrincipal from './components/menuPrincipal';
 import DummyJsonPage from './screen/page';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+
 export default function App() {
   const [mostrarInicioSesion, setMostrarInicioSesion] = useState(true);
   const [mostrarMenu, setMostrarMenu] = useState(true);
