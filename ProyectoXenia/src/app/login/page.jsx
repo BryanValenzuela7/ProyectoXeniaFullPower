@@ -3,15 +3,10 @@ import React from 'react'
 import Modal from 'react-modal';
 import '../globals.css'
 import { useState } from 'react'
-import MenuPrincipal from '../menu/page'
-import RootLayout from '../layout';
-
-//Modal.setAppElement('#root');
 
 const page = ({ mostrarMenuPrincipal }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [menuPrincipal, setMenuPrincipal] = useState(false)
     const [error, setError] = useState(null)
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [modalContent, setModalContent] = useState('')
@@ -53,11 +48,9 @@ const page = ({ mostrarMenuPrincipal }) => {
         console.error('Error al procesar la solicitud: ', error);
         setError('Error interno del servidor');
       }
-    }
 
-    /*if(menuPrincipal){
-      return <MenuPrincipal/>
-    }*/
+      mostrarMenuPrincipal(false)
+    }
 
   return (
     <div className='font-poppins flex items-center justify-center min-h-screen bg-gradient-to-r from-blueClaro to-blueOscuro'>

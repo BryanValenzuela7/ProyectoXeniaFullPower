@@ -9,30 +9,39 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   const [mostrarInicioSesion, setMostrarInicioSesion] = useState(true);
-  const [mostrarMenuPrincipal, setMostrarMenuPrincipal] = useState(true);
+  const [mostrarMenu, setMostrarMenu] = useState(true);
 
   const handleAutenticacionExitosa = () => {
     setMostrarInicioSesion(false);
   };
 
-  const handleOcultarMenuPrincipal = () => {
-    setMostrarMenuPrincipal(false);
+  const handleOcultarMenu = () => {
+    setMostrarMenu(false);
+  };
+
+  const mostrarLogin = () => {
+    setMostrarInicioSesion(true);
+    setMostrarMenu(true);
+  };
+
+  const mostrarMenuPrincipal = () => {
+    setMostrarMenu(true);
   };
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <View style={styles.statusBar}>
-        <StatusBar style="auto" />
-      </View>
-      {/* <DummyJsonPage/> */}
+      <StatusBar style="auto" />
       <View style={styles.content}>
         {mostrarInicioSesion ? (
           <InicioSesion mostrarMenuPrincipal={handleAutenticacionExitosa} />
         ) : (
           <>
-            <NavbarB ocultarMenuPrincipal={handleOcultarMenuPrincipal} />
-            {mostrarMenuPrincipal && <MenuPrincipal />}
-
+            <NavbarB
+              ocultarMenuPrincipal={handleOcultarMenu}
+              mostrarLogin={mostrarLogin}
+              mostrarMenuPrincipal={mostrarMenuPrincipal}
+            />
+            {mostrarMenu && <MenuPrincipal />}
             <Footer />
           </>
         )}
@@ -49,9 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: 40,
   },
-
-  statusBar: {},
-
   content: {
     flex: 1,
     alignItems: 'center',

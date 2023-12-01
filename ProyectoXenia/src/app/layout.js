@@ -30,8 +30,7 @@ export default function RootLayout({ children }) {
         ) : (
           <>
             <NavbarB ocultarMenuPrincipal={handleOcultarMenuPrincipal}/>
-            {mostrarMenuPrincipal && <MenuPrincipal/>}
-            <div id='root'></div>
+            {mostrarMenuPrincipal && <MenuPrincipal mostrarMenu={mostrarMenuPrincipal}/>}
             {children}  
             <Footer/>
           </>

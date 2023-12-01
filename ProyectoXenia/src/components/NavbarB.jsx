@@ -5,9 +5,11 @@ import "../app/styles/Navbar.css";
 import Link from "next/link";
 
 function NavbarB({ocultarMenuPrincipal}) {
+
 	const navRef = useRef();
 
 	const showNavbar = () => {
+
 		navRef.current.classList.toggle(
 			"responsive_nav"
 		);
@@ -24,7 +26,9 @@ function NavbarB({ocultarMenuPrincipal}) {
 
 			<nav ref={navRef}>
 				<a href="/">LOGIN</a>
+				<div>
 				<Link href="/menu" passHref><p>MENU</p></Link>
+				</div>
 				<div onClick={handleLinkClick}>
 				<Link href="/formulario" passHref><p>FORMULARIO</p></Link>
 				</div>

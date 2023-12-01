@@ -1,8 +1,14 @@
 import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons'; // Asegúrate de instalar el paquete correspondiente
+import { FontAwesome5 } from '@expo/vector-icons';
 
-const NavbarB = ({ ocultarMenuPrincipal }) => {
+const NavbarB = ({
+  ocultarMenuPrincipal,
+  mostrarLogin,
+  mostrarFormulario,
+  mostrarEstudiantes,
+  mostrarMenu
+}) => {
   const navRef = useRef();
 
   const showNavbar = () => {
@@ -11,30 +17,38 @@ const NavbarB = ({ ocultarMenuPrincipal }) => {
     });
   };
 
-  const handleLinkClick = () => {
-    ocultarMenuPrincipal(false);
+  const handleLinkClick = (accion) => {
+    if (accion === 'mostrarLogin') {
+      mostrarLogin();
+    } else if (accion === 'ocultarMenu') {
+      mostrarMenu();
+    } else if (accion === 'mostrarFormulario') {
+      mostrarFormulario();
+      showNavbar();
+    } else if (accion === 'mostrarEstudiantes') {
+      mostrarEstudiantes();
+      showNavbar();
+    }
   };
-
 
   return (
     <View style={styles.header}>
-      {/* Coloca aquí tu imagen de logo */}
       <Image
         source={{ uri: 'https://pinotepa.tecnm.mx/wp-content/uploads/2020/03/LOGO_TECNM_BLANCO.png' }}
         style={styles.logo}
       />
 
       <View ref={navRef} style={styles.nav}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleLinkClick('mostrarLogin')}>
           <Text style={styles.navLink}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleLinkClick('ocultarMenu')}>
           <Text style={styles.navLink}>MENU</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleLinkClick}>
+        <TouchableOpacity onPress={() => handleLinkClick('mostrarFormulario')}>
           <Text style={styles.navLink}>FORMULARIO</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleLinkClick}>
+        <TouchableOpacity onPress={() => handleLinkClick('mostrarEstudiantes')}>
           <Text style={styles.navLink}>ESTUDIANTES</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navBtn} onPress={showNavbar}>
@@ -56,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 40,
     padding: 10,
-    backgroundColor: '#023E8A', // Cambia este color según tus necesidades
+    backgroundColor: '#023E8A',
     color: 'white',
     zIndex: 1000,
   },
