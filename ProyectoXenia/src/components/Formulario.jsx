@@ -82,11 +82,11 @@ const Formulario = () => {
   };
 
   return (
-    <div className="formulario-con-sombra2 p-8 ">
-      <h1 className="text-center p-8">Registro</h1>
-      <form className="formulario-con-sombra p-8 grid gap-4 grid-cols-1 md:grid-cols-2" onSubmit={handleSubmit}>
+    <div className="formulario-con-sombra2 p-2 ">
+      <h1 className="text-center p-1 ">REGISTRO</h1>
+      <form className="formulario-con-sombra p-8 grid gap-4 grid-cols-1 md:grid-cols-2 " onSubmit={handleSubmit}>
         <div className="text-white">
-          <label htmlFor="responsable">Nombre</label>
+          <label htmlFor="responsable">NOMBRE COMPLETO</label>
           <input
             id="responsable"
             className="mb-8 p-2 input text-black flex-initial w-full"
@@ -98,7 +98,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="puesto">Rol</label>
+          <label htmlFor="puesto">PUESTO/ROL</label>
           <input
             id="puesto"
             className="mb-8 p-2 input text-black flex-initial w-full"
@@ -110,7 +110,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="contacto">Contacto</label>
+          <label htmlFor="contacto">CORREO ELECTRONICO</label>
           <input
             id="contacto"
             className="mb-8 p-2 input text-black flex-initial w-full"
@@ -122,7 +122,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="Lugar">Dependencia</label>
+          <label htmlFor="Lugar">DEPENDENCIA</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
@@ -133,7 +133,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label className="domicilio">Domicilio</label>
+          <label className="domicilio">DOMICILIO</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
@@ -144,7 +144,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="telefono">Numero</label>
+          <label htmlFor="telefono">NUM TELEFONICO</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
@@ -155,7 +155,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="titular">Nombre encargado</label>
+          <label htmlFor="titular">NOMBRE DEL ENCARGADO</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
@@ -166,7 +166,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="cargo_puesto">Cargo</label>
+          <label htmlFor="cargo_puesto">CARGO</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
@@ -177,7 +177,7 @@ const Formulario = () => {
           />
         </div>
         <div className="text-white">
-          <label htmlFor="Departamento">Departamento</label>
+          <label htmlFor="Departamento">DEPARTAMENTO</label>
           <input
             className="mb-8 p-2 input text-black flex-initial w-full"
             type="text"
