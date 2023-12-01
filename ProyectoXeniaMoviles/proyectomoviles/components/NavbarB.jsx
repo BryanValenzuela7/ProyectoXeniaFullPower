@@ -15,6 +15,7 @@ const NavbarB = ({ ocultarMenuPrincipal }) => {
     ocultarMenuPrincipal(false);
   };
 
+
   return (
     <View style={styles.header}>
       {/* Coloca aquí tu imagen de logo */}
@@ -24,10 +25,10 @@ const NavbarB = ({ ocultarMenuPrincipal }) => {
       />
 
       <View ref={navRef} style={styles.nav}>
-        <TouchableOpacity onPress={handleLinkClick}>
+        <TouchableOpacity>
           <Text style={styles.navLink}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleLinkClick}>
+        <TouchableOpacity>
           <Text style={styles.navLink}>MENU</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLinkClick}>
