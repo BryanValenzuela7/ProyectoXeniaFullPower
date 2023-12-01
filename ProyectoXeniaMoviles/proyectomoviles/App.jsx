@@ -24,6 +24,7 @@ export default function App() {
       <View style={styles.statusBar}>
         <StatusBar style="auto" />
       </View>
+      {/* <DummyJsonPage/> */}
       <View style={styles.content}>
         {mostrarInicioSesion ? (
           <InicioSesion mostrarMenuPrincipal={handleAutenticacionExitosa} />
