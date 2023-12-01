@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Renderizado from './components/Renderizado';
+import DummyJsonPage from './screen/page';
+import NavbarB from './components/NavbarB';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <NavbarB/>
+      <DummyJsonPage/>
       <StatusBar style="auto" />
     </View>
   );
