@@ -1,29 +1,27 @@
 .formulario-con-sombra{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    background-color: #5578B9;
     margin: auto;
-    width: 80%; /* Puedes ajustar el porcentaje según tus necesidades */
-    max-width: 600px; /* Establece un ancho máximo si lo deseas */
+    background-color: #4786d9;
+    width: 100%; /* Puedes ajustar el porcentaje según tus necesidades */
+    max-width: 800px; /* Establece un ancho máximo si lo deseas */
     height: auto; /* La altura se ajustará automáticamente según el contenido */
-   
-    
+    margin-bottom: 20px;
+    border-radius: 5px;
 
 }
 .formulario-con-sombra2{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    background-color:  #3A5795 ;
+    margin-top: 10px;
     margin: auto;
-    width: 80%; /* Puedes ajustar el porcentaje según tus necesidades */
-    max-width: 600px; /* Establece un ancho máximo si lo deseas */
+    width: auto; /* Puedes ajustar el porcentaje según tus necesidades */
+    background: rgb(30, 64, 175);  /* Establece un ancho máximo si lo deseas */
     height: auto; /* La altura se ajustará automáticamente según el contenido */
 }
 .boton{
     justify-content: center;
     align-items: center;
     display: flex;
-    border-radius: 5px;
+    border-radius: 4px;
     background-color: #FED375;
     width: 120px;
     height: 45px;
@@ -31,10 +29,20 @@
     
 }
 .input{
-    border-radius: 5px;
+    border-radius: 4px;
 }
 .text-center{
     font-size: 35px;
-    color: white;
+    color: #ffffff;
     
+}
+
+.text-init{
+    font-size: 25px;
+    color: #FED375;
+    background-color: #023E8A;
+    flex: auto;
+    width: auto;
+    height:    auto;
+    align-self: center;
 }
