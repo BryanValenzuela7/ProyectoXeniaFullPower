@@ -1,0 +1,78 @@
+.custom-footer {
+    background-color: #023E8A;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+    width: 100%;
+}
+
+.contact-info {
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+    margin-right: 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 1px;
+    margin-right: 10px; /* Ajusta el margen derecho según tus preferencias */
+}
+
+.logo {
+    width: 120px;
+    height: 130px;
+    margin: 0 auto; /* Centra el logo horizontalmente en pantallas más pequeñas */
+}
+
+.second-footer {
+    padding: 6px;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3c4448;
+}
+
+.title-info {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(255, 251, 34);
+}
+
+.web-info {
+    color: white;
+}
+
+.website-link {
+    color: white;
+}
+
+.phone-container {
+    display: flex;
+    align-items: center;
+}
+
+.phone-icon {
+    margin-right: 5px;
+}
+
+/* Media query para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+    .contact-info {
+        margin-right: 5px; /* Ajusta el margen derecho en pantallas más pequeñas */
+    }
+
+    .logo {
+        width: 80px;
+        height: 90px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .custom-footer {
+        position: relative;
+    }
+}
