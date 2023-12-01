@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const NavbarB = ({
   ocultarMenuPrincipal,
@@ -32,6 +33,7 @@ const NavbarB = ({
   };
 
   return (
+    <View style={styles.container}>
     <View style={styles.header}>
       <Image
         source={{ uri: 'https://pinotepa.tecnm.mx/wp-content/uploads/2020/03/LOGO_TECNM_BLANCO.png' }}
@@ -52,44 +54,50 @@ const NavbarB = ({
           <Text style={styles.navLink}>ESTUDIANTES</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navBtn} onPress={showNavbar}>
-          <FontAwesome5 name="times" size={24} color="white" />
+          <FontAwesome5 name="times" size={0} color="white" />
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity style={styles.navBtn} onPress={showNavbar}>
-        <FontAwesome5 name="bars" size={24} color="white" />
+        <FontAwesome5 name="bars" size={0} color="white" />
       </TouchableOpacity>
     </View>
-  );
+    </View>
+      );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 0, // Ajusta este valor según tus necesidades
+  },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 40,
-    padding: 10,
     backgroundColor: '#023E8A',
-    color: 'white',
-    zIndex: 1000,
+    padding: 7,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top:0,
   },
+
   logo: {
-    width: 100,
-    height: 'auto',
-    marginLeft: 1,
+    width: RFValue(90), // Utiliza RFValue para el tamaño responsivo
+    height: RFValue(30),
+    resizeMode: 'contain',
   },
+
   nav: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   navLink: {
-    margin: 8,
     color: 'white',
+    fontSize: RFValue(12), // Utiliza RFValue para el tamaño responsivo
+    marginHorizontal: 7,
   },
+
   navBtn: {
-    padding: 5,
-    marginLeft: 10,
+    
   },
 });
 

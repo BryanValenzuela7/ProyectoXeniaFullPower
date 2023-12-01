@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'; // Usar Touchab
 
 const Footer = () => {
   return (
-    <View>
+     <View style={styles.container}>
       <View style={styles.customFooter}>
         <View>
           <Image
@@ -53,53 +53,72 @@ const Footer = () => {
 };
 
 const styles = StyleSheet.create({
-    customFooter: {
-      backgroundColor: '#023E8A',
-      padding: 20,
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      width: '100%',
-    },
-    contactInfo: {
-      color: '#ffffff',
-      marginTop: 5,
-      marginRight: 15,
-      textTransform: 'uppercase',
-      fontSize: 12,
-      margin: 1,
-      marginEnd: 10,
-    },
-    logo: {
-      width: 120,
-      height: 130,
-      margin: 'auto',
-    },
-    secondFooter: {
-      padding: 6,
-      alignItems: 'center',
-      textAlign: 'center',
-      color: '#ffffff',
-      flexDirection: 'column',
-      backgroundColor: '#3c4448',
-    },
-    titleInfo: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      textTransform: 'uppercase',
-      color: '#FFFB22',
-    },
-    icons: {
-      color: '#ffffff',
-    },
-    phoneContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    phoneIcon: {
-      marginRight: 5,
-    },
-  });
+  container: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 0,
+    width: '120%',
+  },
 
+  customFooter: {
+    backgroundColor: '#023E8A',
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    
+  },
+
+  contactInfo: {
+    color: '#FFFFFF',
+    
+    marginRight: 10, // Ajusta el margen derecho según tus preferencias
+    textTransform: 'uppercase',
+    fontSize: 12,
+  },
+
+  logo: {
+    width: 120,
+    height: 130,
+    margin: 0,
+    alignSelf: 'center', // Centra el logo horizontalmente
+  },
+
+  secondFooter: {
+    padding: 6,
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#FFFFFF',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: '#3C4448',
+  },
+
+  titleInfo: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    color: '#FFFB22',
+  },
+
+  webInfo: {
+    color: '#FFFFFF',
+  },
+
+  websiteLink: {
+    color: '#FFFFFF',
+  },
+
+  phoneContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+
+  phoneIcon: {
+    marginRight: 5,
+  },
+
+  // Media query para pantallas más pequeñas
+ 
+});
 export default Footer;

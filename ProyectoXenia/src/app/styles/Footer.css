@@ -62,17 +62,14 @@
 
 /* Media query para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
-    .contact-info {
-        margin-right: 5px; /* Ajusta el margen derecho en pantallas más pequeñas */
+    .title-info, .contact-info {
+        text-align: center;
+        margin-top: 10px; /* Ajusta este valor según tu diseño */
+        display: block; /* Hace que los elementos se coloquen debajo uno del otro */
     }
 
     .logo {
         width: 80px;
         height: 90px;
-    }
-}
-@media screen and (max-width: 768px) {
-    .custom-footer {
-        position: relative;
     }
 }

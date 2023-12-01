@@ -14,6 +14,7 @@ const Renderizado = ({ producto }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      
       <View style={styles.card}>
         <Text style={styles.title}>{producto.nombre}</Text>
         <Text style={styles.subtitle}>Puesto: {producto.puesto}</Text>
