@@ -27,10 +27,10 @@ function NavbarB({ocultarMenuPrincipal}) {
 			<nav ref={navRef}>
 				<a href="/">LOGIN</a>
 				<div>
-				<Link href="/menu" passHref><p>MENU</p></Link>
+				<Link href="/menu" passHref><p>INICIO</p></Link>
 				</div>
 				<div onClick={handleLinkClick}>
-				<Link href="/formulario" passHref><p>FORMULARIO</p></Link>
+				<Link href="/formulario" passHref><p>REGISTRO</p></Link>
 				</div>
 				<div onClick={handleLinkClick}>
 				<Link href="/fetcheo" passHref><p>ESTUDIANTES</p></Link>

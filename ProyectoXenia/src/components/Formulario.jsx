@@ -82,7 +82,8 @@ const Formulario = () => {
   };
 
   return (
-    <div className="formulario-con-sombra2 p-2 ">
+    <div className="formulario-con-sombra2 p-2 bg-[] ">
+     
       <h1 className="text-center p-1 ">REGISTRO</h1>
       <form
         className="formulario-con-sombra p-8 grid gap-4 grid-cols-1 md:grid-cols-2 "

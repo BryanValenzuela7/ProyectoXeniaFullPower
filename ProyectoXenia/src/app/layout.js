@@ -7,6 +7,7 @@ import InicioSesion from '@/app/login/page'
 import NavbarB from '@/components/NavbarB'
 import MenuPrincipal from './menu/page'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {

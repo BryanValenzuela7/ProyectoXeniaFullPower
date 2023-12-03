@@ -3,6 +3,7 @@ import { FaPhone, FaEnvelope, FaFacebook, FaTwitter,FaRegWindowMinimize,FaInstag
 import Link from "next/link";
 import "../app/styles/Footer.css";
 
+
 const Footer = () => {
   
   return (
@@ -30,8 +31,8 @@ const Footer = () => {
             <p className='title-info'>Navegacion</p>
             <FaRegWindowMinimize className='icons'/>
             <br></br>
-            <Link href="/menu" passHref><p>MENU</p></Link>
-            <Link href="/formulario" passHref><p>FORMULARIO</p></Link>
+            <Link href="/menu" passHref><p>INICIO</p></Link>
+            <Link href="/formulario" passHref><p>REGISTRO</p></Link>
             <Link href="/fetcheo" passHref><p>ESTUDIANTES</p></Link>
             <br></br>
             <br></br>
@@ -41,10 +42,10 @@ const Footer = () => {
             <p className='title-info'>Elaborado por</p>
             <FaRegWindowMinimize className='icons'/>
             <br></br>
-            <p className="phone-container"><FaInstagram className="phone-icon"/>Salazar Silva Juan Carlos</p>
-            <p className="phone-container"><FaInstagram className="phone-icon"/>San Miguel Osorio Jesus Elian</p>
-            <p className="phone-container"><FaInstagram className="phone-icon"/>Lopez Campuzano Pedro Adrian</p>
-            <p className="phone-container"><FaInstagram className="phone-icon"/>Valenzuela Encinas Bryan</p>
+            <a href="https://www.instagram.com/salazarsilvajc/" target="_blank" rel="noopener noreferrer" className="phone-container"><FaInstagram className="phone-icon"/>Salazar Silva Juan Carlos</a>
+            <a href="https://www.instagram.com/f" className="phone-container"><FaInstagram className="phone-icon"/>San Miguel Osorio Jesus Elian</a>
+            <a href="https://www.instagram.com/fuanchito/" className="phone-container"><FaInstagram className="phone-icon"/>Lopez Campuzano Pedro Adrian</a>
+            <a href="https://www.instagram.com/fuanchis/" className="phone-container"><FaInstagram className="phone-icon"/>Valenzuela Encinas Bryan</a>
             
             <br></br>
             <br></br>
@@ -57,5 +58,6 @@ const Footer = () => {
     </div>
   );
 };
+
 
 export default Footer;
