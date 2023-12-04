@@ -1,103 +1,110 @@
-import React, { useRef } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const NavbarB = ({
   ocultarMenuPrincipal,
   mostrarLogin,
   mostrarFormulario,
   mostrarEstudiantes,
-  mostrarMenu
 }) => {
-  const navRef = useRef();
+  const [mostrarMenu, setMostrarMenu] = useState(false);
 
-  const showNavbar = () => {
-    navRef.current.setNativeProps({
-      style: { translateY: navRef.current.translateY === 0 ? -1000 : 0 },
-    });
+  const toggleMenu = () => {
+    setMostrarMenu(!mostrarMenu);
   };
 
   const handleLinkClick = (accion) => {
-    if (accion === 'mostrarLogin') {
-      mostrarLogin();
-    } else if (accion === 'ocultarMenu') {
-      mostrarMenu();
-    } else if (accion === 'mostrarFormulario') {
-      mostrarFormulario();
-      showNavbar();
-    } else if (accion === 'mostrarEstudiantes') {
-      mostrarEstudiantes();
-      showNavbar();
+    switch (accion) {
+      case 'ocultarMenu':
+        ocultarMenuPrincipal();
+        break;
+      case 'mostrarLogin':
+        mostrarLogin();
+        break;
+      case 'mostrarFormulario':
+        mostrarFormulario();
+        break;
+      case 'mostrarEstudiantes':
+        mostrarEstudiantes();
+        break;
+      default:
+        break;
     }
+    // Cerrar el menú después de hacer clic en una opción
+    setMostrarMenu(false);
   };
 
   return (
-    <View style={styles.container}>
-    <View style={styles.header}>
-      <Image
-        source={{ uri: 'https://pinotepa.tecnm.mx/wp-content/uploads/2020/03/LOGO_TECNM_BLANCO.png' }}
-        style={styles.logo}
-      />
+    <TouchableWithoutFeedback onPress={() => setMostrarMenu(false)}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
+            <FontAwesome5 name={mostrarMenu ? 'times' : 'bars'} size={RFValue(20)} color="white" />
+          </TouchableOpacity>
 
-      <View ref={navRef} style={styles.nav}>
-        <TouchableOpacity onPress={() => handleLinkClick('mostrarLogin')}>
-          <Text style={styles.navLink}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleLinkClick('ocultarMenu')}>
-          <Text style={styles.navLink}>MENU</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleLinkClick('mostrarFormulario')}>
-          <Text style={styles.navLink}>FORMULARIO</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleLinkClick('mostrarEstudiantes')}>
-          <Text style={styles.navLink}>ESTUDIANTES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn} onPress={showNavbar}>
-          <FontAwesome5 name="times" size={0} color="white" />
-        </TouchableOpacity>
-      </View>
+          <Image
+            source={{ uri: 'https://pinotepa.tecnm.mx/wp-content/uploads/2020/03/LOGO_TECNM_BLANCO.png' }}
+            style={styles.logo}
+          />
 
-      <TouchableOpacity style={styles.navBtn} onPress={showNavbar}>
-        <FontAwesome5 name="bars" size={0} color="white" />
-      </TouchableOpacity>
-    </View>
-    </View>
-      );
+          <TouchableOpacity style={styles.userButton} onPress={() => handleLinkClick('mostrarUsuario')}>
+            <FontAwesome5 name="user" size={RFValue(20)} color="white" />
+          </TouchableOpacity>
+        </View>
+
+        {mostrarMenu && (
+          <View style={styles.nav}>
+            <TouchableOpacity onPress={() => handleLinkClick('ocultarMenu')}>
+              <Text style={styles.navLink}>MENU</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleLinkClick('mostrarEstudiantes')}>
+              <Text style={styles.navLink}>ESTUDIANTES</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 0, // Ajusta este valor según tus necesidades
+    backgroundColor: '#023E8A',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
   header: {
-    backgroundColor: '#023E8A',
-    padding: 7,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    top:0,
+    padding: 10,
+    width: 400,
   },
-
+  menuButton: {
+    padding: 10,
+  },
   logo: {
-    width: RFValue(90), // Utiliza RFValue para el tamaño responsivo
+    width: RFValue(90),
     height: RFValue(30),
     resizeMode: 'contain',
   },
-
-  nav: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  userButton: {
+    padding: 10,
   },
-
+  nav: {
+    backgroundColor: '#023E8A',
+    padding: 10,
+  },
   navLink: {
     color: 'white',
-    fontSize: RFValue(12), // Utiliza RFValue para el tamaño responsivo
-    marginHorizontal: 7,
-  },
-
-  navBtn: {
-    
+    fontSize: RFValue(12),
+    marginVertical: 7,
   },
 });
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { obtenerProductosDummy } from '../libs/index-fetch';
 import Renderizado from '../components/Renderizado';
+import { View, ScrollView, StyleSheet } from 'react-native';
 
 const DummyJsonPage = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +9,7 @@ const DummyJsonPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await obtenerProductosDummy(`?timestamp=${Date.now()}`);
+        const data = await obtenerProductosDummy();
         setProducts(data);
       } catch (error) {
         console.error('Error al obtener productos:', error);
@@ -30,8 +30,6 @@ const DummyJsonPage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column', // Cambiado a 'column'
-    justifyContent: 'space-between',
     padding: 16,
   },
 });

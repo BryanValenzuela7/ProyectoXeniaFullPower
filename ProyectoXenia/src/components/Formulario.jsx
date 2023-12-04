@@ -1,12 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState} from "react";
+import { useRouter } from "next/navigation";
 async function obtenerUsuario() {
   const nuevoUser = await fetch("http://localhost:3000/api/datosusuario");
   return nuevoUser.json();
 }
 
 const Formulario = () => {
+  const route = useRouter();
   const [userData, setUserData] = useState([]);
   const [nombre, setNombre] = useState("");
   const [puesto, setPuesto] = useState("");
@@ -79,6 +80,7 @@ const Formulario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     agregarUsuario();
+    route.push('/fetcheo');
   };
 
   return (

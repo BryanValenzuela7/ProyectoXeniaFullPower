@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import NavbarB from './components/NavbarB';
-import Footer from './components/Footer';
 import InicioSesion from './components/login';
 import MenuPrincipal from './components/menuPrincipal';
 import DummyJsonPage from './screen/page';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-
 export default function App() {
   const [mostrarInicioSesion, setMostrarInicioSesion] = useState(true);
   const [mostrarMenu, setMostrarMenu] = useState(true);
+  const [mostrarDummyPage, setMostrarDummyPage] = useState(false);
+
+
 
   const handleAutenticacionExitosa = () => {
     setMostrarInicioSesion(false);
   };
 
-  const handleOcultarMenu = () => {
-    setMostrarMenu(false);
+  const handleMostrarMenu = () => {
+    setMostrarMenu(true);
+    setMostrarDummyPage(false);
   };
 
   const mostrarLogin = () => {
@@ -27,23 +29,38 @@ export default function App() {
 
   const mostrarMenuPrincipal = () => {
     setMostrarMenu(true);
+    setMostrarInicioSesion(false);
+    setMostrarDummyPage(false);
+  };
+
+  const mostrarEstudiantesPage = () => {
+    setMostrarMenu(false);
+    setMostrarInicioSesion(false);
+    setMostrarDummyPage(true);
   };
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <StatusBar style="auto" />
+      {/* Barra de estado */}
+      <StatusBar backgroundColor="#023E8A" barStyle="light-content" />
+
+      {/* NavbarB que cubre toda la parte superior */}
+      <NavbarB
+        ocultarMenuPrincipal={handleMostrarMenu}  
+        mostrarLogin={mostrarLogin}
+        mostrarFormulario={mostrarMenuPrincipal}
+        mostrarEstudiantes={mostrarEstudiantesPage}
+        mostrarMenu={mostrarMenu}
+      />
+
+      {/* Contenido de la aplicación */}
       <View style={styles.content}>
         {mostrarInicioSesion ? (
           <InicioSesion mostrarMenuPrincipal={handleAutenticacionExitosa} />
         ) : (
           <>
-            <NavbarB
-              ocultarMenuPrincipal={handleOcultarMenu}
-              mostrarLogin={mostrarLogin}
-              mostrarMenuPrincipal={mostrarMenuPrincipal}
-            />
             {mostrarMenu && <MenuPrincipal />}
-            <Footer />
+            {mostrarDummyPage && <DummyJsonPage />}
           </>
         )}
       </View>
@@ -57,7 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#E1E5F2',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 40,
   },
   content: {
     flex: 1,

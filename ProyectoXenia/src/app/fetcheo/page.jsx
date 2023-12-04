@@ -3,9 +3,8 @@ import { obtenerProductosDummy } from '@/libs/index-fetch';
 import Renderizado from '@/components/Renderizado';
 
 const DummyJsonPage = async () => {
-  
   try {
-    const data = await obtenerProductosDummy(`?timestamp=${Date.now()}`);
+    const data = await obtenerProductosDummy();
     const products = data;
 
     return (

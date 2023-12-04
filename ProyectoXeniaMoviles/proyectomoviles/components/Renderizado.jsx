@@ -1,153 +1,240 @@
+// Renderizado.jsx
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import Modal from 'react-native-modal';
+import axios from 'axios';
 
 const Renderizado = ({ producto }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isEditModalVisible, setEditModalVisible] = useState(false);
+  const [editedProduct, setEditedProduct] = useState({});
 
-  const openModal = () => {
-    setModalOpen(true);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const toggleEditModal = () => {
+    setEditModalVisible(!isEditModalVisible);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://192.168.1.69:3000/api/datosusuario/${producto.id}`);
+
+      if (response.status === 200) {
+        console.log("Usuario correctamente eliminado");
+        toggleModal();
+        // Aquí debes realizar la actualización de la lista de productos
+      } else {
+        console.log("Error al eliminar el usuario");
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+    }
+  };
+
+  const handleEdit = () => {
+    setEditedProduct({
+      nombre: producto.nombre,
+      puesto: producto.puesto,
+      correo: producto.correo,
+      nombre_dependencia: producto.nombre_dependencia,
+      domicilio: producto.domicilio,
+      telefono: producto.telefono,
+      nombre_titular: producto.nombre_titular,
+      cargo_puesto: producto.cargo_puesto,
+      departamento_area: producto.departamento_area,
+    });
+
+    toggleEditModal();
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      const response = await axios.put(
+        `http://192.168.1.69:3000/api/datosusuario/${producto.id}`,
+        editedProduct,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('Cambios guardados correctamente');
+        toggleEditModal();
+        // Aquí debes realizar la actualización de la lista de productos
+      } else {
+        console.error('Error al actualizar el producto');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      
-      <View style={styles.card}>
-        <Text style={styles.title}>{producto.nombre}</Text>
-        <Text style={styles.subtitle}>Puesto: {producto.puesto}</Text>
-        <Text style={styles.subtitle}>Correo: {producto.correo}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={openModal}
-          >
-            <Text style={styles.buttonText}>Ver más</Text>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.productContainer} onPress={toggleModal}>
+        <Text style={styles.productTitle}>{producto.nombre}</Text>
+        <Text style={styles.productInfo}>Puesto: {producto.puesto}</Text>
+        <Text style={styles.productInfo}>Correo: {producto.correo}</Text>
+      </TouchableOpacity>
+
+      <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>{producto.nombre}</Text>
+          <Text style={styles.modalInfo}>Puesto: {producto.puesto}</Text>
+          <Text style={styles.modalInfo}>Correo: {producto.correo}</Text>
+          <Text style={styles.modalInfo}>Dependencia: {producto.nombre_dependencia}</Text>
+          <Text style={styles.modalInfo}>Domicilio: {producto.domicilio}</Text>
+          <Text style={styles.modalInfo}>Número de Teléfono: {producto.telefono}</Text>
+          <Text style={styles.modalInfo}>Nombre del Titular: {producto.nombre_titular}</Text>
+          <Text style={styles.modalInfo}>Cargo: {producto.cargo_puesto}</Text>
+          <Text style={styles.modalInfo}>Departamento: {producto.departamento_area}</Text>
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={[styles.button, styles.buttonDelete]} onPress={handleDelete}>
+              <Text style={styles.buttonText}>Eliminar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={handleEdit}>
+              <Text style={styles.buttonText}>Editar</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity style={styles.button} onPress={toggleModal}>
+            <Text style={styles.buttonText}>Cerrar Informacion</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Modal>
 
-      {/* Modal */}
-      <Modal
-        transparent={true}
-        visible={modalOpen}
-        onRequestClose={closeModal}
-      >
+      <Modal isVisible={isEditModalVisible} onBackdropPress={toggleEditModal}>
         <View style={styles.modalContainer}>
-          <TouchableOpacity
-            style={styles.overlay}
-            onPress={closeModal}
+          <TextInput
+            value={editedProduct.nombre}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, nombre: text })}
+            style={styles.input}
           />
-          <View style={styles.modalContent}>
-            <ScrollView>
-              <Text style={styles.modalTitle}>Dependencia</Text>
-              <Text style={styles.modalText}>{producto.nombre_dependencia}</Text>
+          <TextInput
+            value={editedProduct.puesto}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, puesto: text })}
+            style={styles.input}
+          />
+          <TextInput
+            value={editedProduct.correo}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, correo: text })}
+            style={styles.input}
+            keyboardType='email-address'
+          />
+          <TextInput
+            value={editedProduct.nombre_dependencia}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, nombre_dependencia: text })}
+            style={styles.input}
+          />
+          <TextInput
+            value={editedProduct.domicilio}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, domicilio: text })}
+            style={styles.input}
+          />
+          <TextInput
+            value={editedProduct.telefono}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, telefono: text })}
+            style={styles.input}
+            keyboardType='numeric'
+          />
+          <TextInput
+            value={editedProduct.nombre_titular}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, nombre_titular: text })}
+            style={styles.input}
+          />
+          <TextInput
+            value={editedProduct.cargo_puesto}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, cargo_puesto: text })}
+            style={styles.input}
+          />
+          <TextInput
+            value={editedProduct.departamento_area}
+            onChangeText={(text) => setEditedProduct({ ...editedProduct, departamento_area: text })}
+            style={styles.input}
+          />
 
-              <Text style={styles.modalTitle}>Domicilio</Text>
-              <Text style={styles.modalText}>{producto.domicilio}</Text>
-
-              <Text style={styles.modalTitle}># Teléfono</Text>
-              <Text style={styles.modalText}>{producto.telefono}</Text>
-
-              <Text style={styles.modalTitle}>Nombre Titular</Text>
-              <Text style={styles.modalText}>{producto.nombre_titular}</Text>
-
-              <Text style={styles.modalTitle}>Cargo</Text>
-              <Text style={styles.modalText}>{producto.cargo_puesto}</Text>
-
-              <Text style={styles.modalTitle}>Departamento</Text>
-              <Text style={styles.modalText}>{producto.departamento_area}</Text>
-
-              <TouchableOpacity
-                style={styles.closeButton}
-                onPress={closeModal}
-              >
-                <Text style={styles.buttonText}>Cerrar Modal</Text>
-              </TouchableOpacity>
-            </ScrollView>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={handleSaveChanges}>
+              <Text style={styles.buttonText}>Guardar Cambios</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={toggleEditModal}>
+              <Text style={styles.buttonText}>Cerrar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginVertical: 8,
   },
-  card: {
-    width: '80%',
-    padding: 16,
-    marginVertical: 12,
+  productContainer: {
     backgroundColor: 'white',
+    padding: 16,
     borderRadius: 8,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
-  title: {
-    fontSize: 20,
+  productTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
   },
-  subtitle: {
+  productInfo: {
     color: 'gray',
-    marginBottom: 8,
-  },
-  buttonContainer: {
-    alignItems: 'flex-end',
-  },
-  button: {
-    backgroundColor: '#3498db',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: 'white',
+    marginBottom: 4,
   },
   modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
     backgroundColor: 'white',
     padding: 16,
     borderRadius: 8,
-    width: '80%',
-    maxHeight: '80%',
+    alignItems: 'center',
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#3498db'
   },
-  modalText: {
-    marginBottom: 16,
+  modalInfo: {
+    marginBottom: 4,
   },
-  closeButton: {
+  input: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 8,
+    marginBottom: 8,
+    width: '100%',
+  },
+  button: {
     backgroundColor: '#3498db',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    alignSelf: 'flex-end',
-    marginTop: 16,
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    width: '40%', // Ajusta el ancho según sea necesario
+  },
+  buttonDelete: {
+    backgroundColor: '#e74c3c',
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    width: '100%',
   },
 });
 
