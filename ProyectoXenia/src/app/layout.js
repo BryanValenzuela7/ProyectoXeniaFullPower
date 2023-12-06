@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" style={{ height: '100%' }}>
       <body className=  {inter.className}  style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
-        <main className="bg-[#ffffff]"style={{ flex: 1 }}>
+        <main className=""style={{ flex: 1 }}>
         {mostrarInicioSesion ? (
           <InicioSesion mostrarMenuPrincipal={handleAutenticacionExitosa} />
         ) : (
           <>
             <NavbarB ocultarMenuPrincipal={handleOcultarMenuPrincipal}/>
-            {mostrarMenuPrincipal && <MenuPrincipal mostrarMenu={mostrarMenuPrincipal}/>}
+            
             {children}  
             <Footer/>
           </>

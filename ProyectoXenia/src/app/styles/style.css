@@ -1,39 +1,53 @@
+.formulario-con-sombra3{
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    background-color: #023E8A;
+    width: 100%; /* Puedes ajustar el porcentaje según tus necesidades */
+    max-width: 750px; /* Establece un ancho máximo si lo deseas */
+    height: auto; /* La altura se ajustará automáticamente según el contenido */
+    margin-bottom: 25px;
+    margin-top: 25px;
+    border-radius: 5px;
+    text-align: center  ;
+    text-transform: uppercase;
+    text-decoration: dotted;
+    font-size: 24px;
+    font-display: inherit;
+    color: white;
+    /* Oculta el formulario en modo responsivo */
+        z-index: 999;
+}
 .formulario-con-sombra{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     margin: auto;
-    background-color: #02C3B6;
+    background-color: #023E8A;
     width: 100%; /* Puedes ajustar el porcentaje según tus necesidades */
-    max-width: 800px; /* Establece un ancho máximo si lo deseas */
+    max-width: 750px; /* Establece un ancho máximo si lo deseas */
     height: auto; /* La altura se ajustará automáticamente según el contenido */
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 25px;
     border-radius: 5px;
+    text-align: center  ;
+    text-transform: uppercase;
+    text-decoration: dotted;
+    z-index: 998; /* Cambié el z-index a 998 para que sea menor que el navbar (1000) */
+    color: white;
+
 
 }
 .formulario-con-sombra2{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
+    margin-top: 15px;
     margin: auto;
     width: auto; /* Puedes ajustar el porcentaje según tus necesidades */
-    background-color: #02A79C;  /* Establece un ancho máximo si lo deseas */
-    height: auto; /* La altura se ajustará automáticamente según el contenido */
+    background-color: #E1E5F2;  /* Establece un ancho máximo si lo deseas */
+    height: auto;
+    z-index: 997;/* La altura se ajustará automáticamente según el contenido */
 }
-.boton{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    border-radius: 4px;
-    background-color: #f82e2e;
-    width: 100%;
-    height: 45px;
-    color: white;
-    
-}
-.input{
-    border-radius: 4px;
-}
+
+
 .text-center{
-    font-size: 35px;
-    color: #ffffff;
+    font-size: 34px;
     
 }
 
@@ -46,3 +60,93 @@
     height:    auto;
     align-self: center;
 }
+.inputbox {
+    position: relative;
+    width: 300px;
+  }
+  
+  .inputbox input {
+    position: relative;
+    width: 100%;
+    padding: 30px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #000000;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+  }
+  
+  .inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #000000;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  
+  .inputbox input:valid ~span,
+  .inputbox input:focus ~span {
+    color: #E1E5F2;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0,75em;
+  }
+  .inputbox input:invalid ~span,
+  .inputbox input:focus ~span {
+    color: #fffb22;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0,75em;
+  }
+
+  .inputbox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #E1E5F2 ;
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+  }
+  
+  .inputbox input:valid ~i,
+  .inputbox input:focus ~i {
+    height: 44px;
+  }
+
+  button.button1 {
+    padding: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fffb22;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-top: 7px;
+    width: 300px;
+  }
+  
+  button.button1:hover {
+    background-color: #fffb22;
+    box-shadow: 0px 15px 20px rgba(25, 45, 37, 0.4);
+    color: #000000;
+    transform: translateY(-7px);
+  }
+  
+  button.button1:active {
+    transform: translateY(-1px);
+  }

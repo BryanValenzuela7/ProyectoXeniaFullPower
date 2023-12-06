@@ -25,13 +25,13 @@ const Footer = () => {
             <br></br>
             <p className="phone-container"><FaPhone className="phone-icon" />Teléfono: 646 177 5682</p>
             <p className="phone-container"><FaEnvelope className="phone-icon" />Email: webmaster@ensenada.tecnm.mx</p>
-            <p className="phone-container"><FaFacebook className="phone-icon"/>tecnmcampusensenada/</p>
+            <a href="https://www.facebook.com/tecnmcampusensenada/"className="phone-container"><FaFacebook className="phone-icon"/>tecnmcampusensenada/</a>
         </div>
         <div className="contact-info">
             <p className='title-info'>Navegacion</p>
             <FaRegWindowMinimize className='icons'/>
             <br></br>
-            <Link href="/menu" passHref><p>INICIO</p></Link>
+            <Link href="/inicio" passHref><p>INICIO</p></Link>
             <Link href="/formulario" passHref><p>REGISTRO</p></Link>
             <Link href="/fetcheo" passHref><p>ESTUDIANTES</p></Link>
             <br></br>
@@ -42,10 +42,10 @@ const Footer = () => {
             <p className='title-info'>Elaborado por</p>
             <FaRegWindowMinimize className='icons'/>
             <br></br>
-            <a href="https://www.instagram.com/salazarsilvajc/" target="_blank" rel="noopener noreferrer" className="phone-container"><FaInstagram className="phone-icon"/>Salazar Silva Juan Carlos</a>
+            <a href="https://www.instagram.com/fuanchitos/" target="_blank" rel="noopener noreferrer" className="phone-container"><FaInstagram className="phone-icon"/>Salazar Silva Juan Carlos</a>
             <a href="https://www.instagram.com/f" className="phone-container"><FaInstagram className="phone-icon"/>San Miguel Osorio Jesus Elian</a>
-            <a href="https://www.instagram.com/fuanchito/" className="phone-container"><FaInstagram className="phone-icon"/>Lopez Campuzano Pedro Adrian</a>
-            <a href="https://www.instagram.com/fuanchis/" className="phone-container"><FaInstagram className="phone-icon"/>Valenzuela Encinas Bryan</a>
+            <a href="https://www.instagram.com/adrianlcp18/" className="phone-container"><FaInstagram className="phone-icon"/>Lopez Campuzano Pedro Adrian</a>
+            <a href="https://www.instagram.com/papito_bryan/" className="phone-container"><FaInstagram className="phone-icon"/>Valenzuela Encinas Bryan</a>
             
             <br></br>
             <br></br>

@@ -3,7 +3,7 @@ import Inicio from '@/components/Inicio'
 
 const page = () => {
   return (
-    <div></div>
+    <Inicio/>
   )
 }
 

@@ -1,8 +1,10 @@
-import react from "react"
+import React from 'react';// Archivo CSS para los estilos
+import Inicio from '@/components/Inicio'
 
-export default function Home() {
+const Page = () => {
   return (
-    <main>
-    </main>
-  )
-}
+    <Inicio/>
+  );
+};
+
+export default Page;
