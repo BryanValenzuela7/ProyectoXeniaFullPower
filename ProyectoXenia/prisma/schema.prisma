@@ -27,4 +27,17 @@ model Login {
   id       String @id @default(uuid())
   username String @unique
   password String
+  usuario  Usuarios @relation(fields: [usuarioId], references: [id])
+  usuarioId String @unique
+}
+
+model Usuarios {
+  id        String @id @unique
+  nombre    String
+  apellido  String
+  correo    String
+  telefono  String
+  username  String @unique
+  password  String
+  login     Login?
 }

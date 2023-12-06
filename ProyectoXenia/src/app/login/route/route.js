@@ -24,12 +24,6 @@ export async function POST(request){
             mensaje: autenticacionExitosa ? "Autenticación exitosa" : "Datos incorrectos",
         })
 
-        /*if (usuarioExistente && usuarioExistente.password === password){
-            return NextResponse.json({mensaje: 'Autenticación exitosa'})
-        }else{
-            return NextResponse.error('Datos incorrectos')
-        }*/
-
      } catch (error){
         console.error('Error al procesar la soliciturd: ', error)
         return NextResponse.error('Error interno del servidor')

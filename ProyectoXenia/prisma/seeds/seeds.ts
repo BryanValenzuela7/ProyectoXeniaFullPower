@@ -3,45 +3,25 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Cargar datos de ejemplo
-  await prisma.dependencia.create({
+  const usuario = await prisma.usuarios.create({
     data: {
-      nombre_dependencia: 'Laboratorio de computo',
-      domicilio: 'Calle Ejemplo 123',
-      telefono: '123-456-7890',
-      nombre_titular: 'Profe Tirado',
-      cargo_puesto: 'Encargado de laboratorio',
-      departamento_area: 'Sistemas Computacionales',
-      personas: {
-        create: [
-          {
-            nombre: 'Pedro López',
-            puesto: 'Tecnico',
-            correo: 'adrianlcp18@example.com',
-          },
-        ],
-      },
-      usuarios: {
-        create: [
-          {
-            nombre: 'Pedro López',
-            puesto: 'Tecnico',
-            correo: 'adrianlcp18@example.com',
-          },
-        ],
+      id: '1', // Ajusta el ID según tus necesidades
+      nombre: 'Nombre',
+      apellido: 'Apellido',
+      correo: 'correo@example.com',
+      telefono: '123456789',
+      username: 'Pedro1',
+      password: '1234',
+      login: {
+        create: {
+          username: 'Pedro1',
+          password: '1234',
+        },
       },
     },
   });
 
-  // Crear datos de ejemplo para el modelo Login
-  await prisma.login.create({
-    data: {
-      username: 'Pedro',
-      password: '123',
-    },
-  });
-
-  console.log('Datos cargados correctamente.');
+  console.log('Datos de semilla creados:', usuario);
 }
 
 main()

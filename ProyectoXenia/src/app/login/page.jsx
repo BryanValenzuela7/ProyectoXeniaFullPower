@@ -4,25 +4,28 @@ import Modal from 'react-modal';
 import '../globals.css'
 import { useState } from 'react'
 
-const page = ({ mostrarMenuPrincipal }) => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
-    const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [modalContent, setModalContent] = useState('')
-
+const page = ({ mostrarMenuPrincipal, mostrarNuevoUsuario}) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalContent, setModalContent] = useState('');
 
     const abrirModal = (contenido) => {
-      setModalContent(contenido)
-      setModalIsOpen(true)
+      setModalContent(contenido);
+      setModalIsOpen(true);
     }
 
     const cerrarModal = () => {
-      setModalIsOpen(false)
-      setError(null)
+      setModalIsOpen(false);
+      setError(null);
     }
-
+    
     const handleIngresar = async () => {
+      if(username === '' | password === ''){
+        abrirModal('Se deben llenar todos los campos.');
+      }
+
       try {
         const response = await fetch('/login/route', {
           method: 'POST',
@@ -48,8 +51,6 @@ const page = ({ mostrarMenuPrincipal }) => {
         console.error('Error al procesar la solicitud: ', error);
         setError('Error interno del servidor');
       }
-
-      mostrarMenuPrincipal(false)
     }
 
   return (
@@ -87,28 +88,37 @@ const page = ({ mostrarMenuPrincipal }) => {
             >
               Ingresar
             </button>
+            <button
+            className='text-white bg-green-500 rounded py-2 shadow-md focus:shadow-outline w-full mt-2'
+            onClick={() => {
+              cerrarModal();
+              mostrarNuevoUsuario();
+            }}
+            >
+              Crear Cuenta
+            </button>
 
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={cerrarModal}
               contentLabel='Modal'
-              className='absolute top-1/2 left-1/2 transform -translate-x-1/2 bg-blue-100 p-4 rounded shadow-md w-96 border border-gray-300'
-              overlayClassName='insert-0 bg-black'
+              className='absolute top-1/2 left-1/2 transform -translate-x-1/2 bg-white p-8 rounded shadow-md w-96 md:w-1/2 border border-gray-300'
+              overlayClassName='insert-0 bg-black bg-opacity-50'
               ariaHideApp={false}
             >
               <div className='text-center'>
                 <p className='text-black mb-2'>{modalContent}</p>
                 {error && (
                   <button
-                    className='text-white bg-blue-500 rounded py-2 hover:bg-blue-600 focus:shadow-outline w-20'
-                     onClick={cerrarModal}
+                    className='text-white bg-red-500 rounded py-2 hover:bg-red-600 focus:shadow-outline w-full'
+                    onClick={cerrarModal}
                   >
                       Cerrar
                   </button>
                 )}
                 {modalContent === 'Autenticación exitosa!' && !error && (
                   <button
-                    className='text-white bg-blue-500 rounded py-2 hover:bg-blue-600 focus:shadow-outline w-20'
+                    className='text-white bg-green-500 rounded py-2 hover:bg-green-600 focus:shadow-outline w-full mt-2'
                     onClick={() => {
                       //setMenuPrincipal(true);
                       mostrarMenuPrincipal(false)
